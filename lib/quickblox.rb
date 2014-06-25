@@ -1,5 +1,4 @@
 require 'net/http'
-require 'hmac-sha1'
 require 'json'
 require 'rest_client'
 require 'yaml'
@@ -131,7 +130,9 @@ class Quickblox
   def signup_user(user_params)
     @token = get_token unless @token_type=='app'
     user_params.merge! "token" => @token, "user[owner_id]" => @user_owner_id
+    debugger
     normalized= normalize(user_params)
+    debugger
     req = Net::HTTP::Post.new(URI(@users_uri.to_s+".json").path)
     req.body = "#{normalized}"
     response=Net::HTTP.start(@users_uri.host) do |http|
