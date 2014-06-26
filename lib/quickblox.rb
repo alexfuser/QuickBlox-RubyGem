@@ -1,4 +1,5 @@
 require 'net/http'
+require 'hmac-sha1'
 require 'json'
 require 'rest_client'
 require 'yaml'
